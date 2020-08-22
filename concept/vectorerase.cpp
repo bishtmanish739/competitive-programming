@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+//link=https://www.hackerrank.com/challenges/vector-erase/problem
 
 
 int main() {
