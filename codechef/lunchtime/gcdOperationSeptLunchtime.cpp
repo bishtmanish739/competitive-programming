@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+//link of problem-https://www.codechef.com/LTIME88B/problems/GCDOPS
 
 int main() {
 	// your code goes here
