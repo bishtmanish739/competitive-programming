@@ -2,6 +2,7 @@
 using namespace std;
 
 //link->https://practice.geeksforgeeks.org/problems/kth-smallest-element/0
+//another aproach ->https://youtu.be/BP7GCALO2v8
 int main() {
 	//code
 	int t;
