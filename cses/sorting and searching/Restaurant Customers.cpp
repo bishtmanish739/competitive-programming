@@ -6,32 +6,23 @@ int32_t main(){
     cin.tie(NULL);
     int n;
     cin>>n;
-    vector<int> arrival;
-    vector<int > leaving;
-    for(int i=0;i<n;i++){
-            int a;
-            cin>>a;
-            int l;
-            cin>>l;
-            arrival.push_back(a);
-            leaving.push_back(l);
-
+    vector<pair<int,bool>> v;
+    int x; int y;
+    while(n--){
+    	cin>>x;cin>>y;
+    	v.push_back(make_pair(x,true));
+    	v.push_back(make_pair(y,false));
     }
-    sort(arrival.begin(),arrival.end());
-    sort(leaving.begin(),leaving.end());
-    int i=0;
-    int j=0;
-    int count=0;
-    while(i<n&&j<n&&count<=n){
-        if(arrival[i]<leaving[j]){
-            i++;
-            count++;
-        }
-        else{
-            j++;
-            i++;
-        }
-    }
-    cout<<count<<endl;
+   	sort(v.begin(),v.end());
+   	int ans =0; int maxx =0;
+   	for(int i=0;i<v.size();i++){
+   		if(v[i].second==true){
+   			ans++;
+   			maxx = max(ans,maxx);
+   		}else{
+   			ans--;
+   		}
+   	}
+   	cout<<maxx<<endl;
 return 0;
 }
