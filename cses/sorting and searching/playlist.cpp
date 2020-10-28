@@ -6,25 +6,35 @@ int32_t main(){
 	cin.tie(NULL);
 	int n;
 	cin >> n;
-	map<int ,int > mymap;
-	int max=0;
+	vector<int > v;
+	map<int ,bool > mymap;
+	int maxx=0;
 	int currans=0;
+	int j=0;
 	for(int i=0;i<n;i++){
 	    int k;
         cin>>k;
-        if(mymap.find(k)==mymap.end()){
-                mymap[k]++;
+        v.push_back(k);
+        if(mymap.find(k)==mymap.end()||mymap[k]==false){
+                mymap[k]=true;
                 currans++;
-                max=max(currans,max);
+                maxx=max(currans,maxx);
 
         }
         else{
-             mymap[k]--;
-            currans--;
+             while(v[j]!=k){
+                    mymap[v[j]]=false;
+                    j++;
+             }
+             //j++;
+            // mymap[v[j]]=true;
+             currans=(i-j);
+             j++;
 
 
         }
 	}
+	cout<<maxx<<endl;
 
 }
 
