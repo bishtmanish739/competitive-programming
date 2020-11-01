@@ -1,44 +1,39 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define lli long long int
+#define li long int
+#define ld long double
 using namespace std;
-#define int long long int
-int32_t main(){
-    int x;
-    cin>>x;int n;
-    cin>>n;
-    map<int ,bool > mymap;
-    int max1=INT_MAX;
-    mymap[0]=true;
-    mymap[x]=true;
+const lli mod = 1e9 + 7;
 
-    pair <int,int> prev=make_pair(0,x);
-    for(int i =0;i<n;i++){
-        int curr;
-        cin>>curr;
-        mymap[curr]=true;
-        auto it1=mymap.lower_bound(curr);
-        it1--;
-        auto it=mymap.upper_bound(curr);
-        int a=curr-it1->first;
-        int b=it->first-curr;
-        int c=max(a,b);
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int x, n, point, left, right;
+	cin >> x >> n;
+	set<int> points = {0, x};
+	multiset<int> lengths = {x};
+	while (n--)
+	{
+		cin >> point;
+		// find the position to insert the current point
+		auto it = points.upper_bound(point);
 
-        if(c<=max1&& curr<=prev.second&&curr>=prev.first){
+		// [left, right] : the range in which the point is being inserted
+		left = *prev(it);
+		right = *it;
 
-            max1=c;
-            if(a>b){
-                prev.first=it1->first;
-                prev.second=curr;
-            }
-            else {
-                prev.first=curr;
-                prev.second=it->first;
-            }
+		// remove that range from lengths
+		lengths.erase(lengths.find(right - left));
+		// add new lengths
+		lengths.insert(point - left);
+		lengths.insert(right - point);
 
-        }
+		// insert the new point
+		points.insert(it, point);
 
-
-        cout<<max1<<" ";
-    }
-
-return 0;
+		// output the largest length
+		cout << *lengths.rbegin() << " ";
+	}
+	return 0;
 }
