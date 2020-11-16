@@ -17,7 +17,7 @@ int main() {
         }
         for(int i=0;i<n;i++){
             int k=v[i];
-            if(v1[i]>v[k-1]){
+            if(v1[i]>v1[k-1]){
                 v1[k-1]=v1[i];
             }
             else{
